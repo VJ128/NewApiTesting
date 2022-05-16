@@ -30,8 +30,8 @@ public class POST_User_Scenario14_ValidData_CaseSensitivity_OfFields {
 		List<NameValuePair> urlParameters = new ArrayList<>();
 		String emailId = "api" + Math.random() + "@gmail.com";
 		String name = "API_Test";
-		String gender = "male";
-		String status = "active";
+		String gender = "FEmAlE";
+		String status = "iNAcTIve";
 		urlParameters.add(new BasicNameValuePair("name", name));
 		urlParameters.add(new BasicNameValuePair("email", emailId));
 		urlParameters.add(new BasicNameValuePair("gender", gender));

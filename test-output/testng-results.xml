@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-05-13T06:41:03 PDT" name="Default suite" finished-at="2022-05-13T06:41:05 PDT" duration-ms="1451">
+  <suite started-at="2022-05-16T05:53:06 PDT" name="Default suite" finished-at="2022-05-16T05:53:08 PDT" duration-ms="1695">
     <groups>
     </groups>
-    <test started-at="2022-05-13T06:41:03 PDT" name="Default test" finished-at="2022-05-13T06:41:05 PDT" duration-ms="1451">
-      <class name="com.qa.api.testcases.POST_User_Scenario13_InvalidPathInUrl">
-        <test-method signature="postWithValidData()[pri:0, instance:com.qa.api.testcases.POST_User_Scenario13_InvalidPathInUrl@ef9296d]" started-at="2022-05-13T06:41:03 PDT" name="postWithValidData" finished-at="2022-05-13T06:41:05 PDT" duration-ms="1408" status="PASS">
+    <test started-at="2022-05-16T05:53:06 PDT" name="Default test" finished-at="2022-05-16T05:53:08 PDT" duration-ms="1695">
+      <class name="com.qa.api.testcases.POST_User_Scenario1_ValidData">
+        <test-method signature="postWithValidData()[pri:0, instance:com.qa.api.testcases.POST_User_Scenario1_ValidData@1d119efb]" started-at="2022-05-16T05:53:07 PDT" name="postWithValidData" finished-at="2022-05-16T05:53:08 PDT" duration-ms="1654" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postWithValidData -->
-      </class> <!-- com.qa.api.testcases.POST_User_Scenario13_InvalidPathInUrl -->
+      </class> <!-- com.qa.api.testcases.POST_User_Scenario1_ValidData -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

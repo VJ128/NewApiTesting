@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -32,7 +33,7 @@ public class POST_User_Scenario1_ValidData {
 		HttpPost postReq = new HttpPost(url);
 		postReq.addHeader("Authorization", bearer);
 		// postReq.addHeader("Content-Type", "application/json");
-		List<NameValuePair> urlParameters = new ArrayList<>();
+		List<NameValuePair> urlParameters = new ArrayList();
 		String emailId = "api" + Math.random() + "@gmail.com";
 		String name = "API_Test";
 		String gender = "male";
@@ -61,7 +62,10 @@ public class POST_User_Scenario1_ValidData {
 			Assert.assertEquals(response.getStatusLine().getReasonPhrase(), "Created");//
 			Assert.assertEquals(response.getStatusLine().toString(), "HTTP/1.1 201 Created");
 			String respStrng = getRespString(response);
+			JSONObject jobj=new JSONObject();
+			
 			System.out.println("respString " + respStrng);
+		//	Assert.assertTrue(usersreobj.getId() != null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -4,6 +4,19 @@
   <artifactId>api.testing</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/com.networknt/json-schema-validator -->
+<dependency>
+    <groupId>com.networknt</groupId>
+    <artifactId>json-schema-validator</artifactId>
+    <version>1.0.42</version>
+</dependency>
+ <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpmime</artifactId>
+    <version>4.3.1</version>
+</dependency>
+ 
   	<dependency>
 		<groupId>org.apache.httpcomponents</groupId>
 		<artifactId>httpclient</artifactId>
@@ -21,6 +34,12 @@
     <artifactId>testng</artifactId>
     <version>7.5</version>
     <scope>test</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.13.2.2</version>
 </dependency>
 
 	

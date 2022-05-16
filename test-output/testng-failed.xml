@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.api.testcases.POST_User_Scenario13_InvalidPathInUrl">
+      <class name="com.qa.api.testcases.POST_User_Scenario15_Invalid_Headers">
         <methods>
           <include name="postWithValidData"/>
         </methods>
-      </class> <!-- com.qa.api.testcases.POST_User_Scenario13_InvalidPathInUrl -->
+      </class> <!-- com.qa.api.testcases.POST_User_Scenario15_Invalid_Headers -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
