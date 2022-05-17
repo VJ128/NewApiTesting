@@ -1,47 +1,61 @@
 package com.qa.api.gorest;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import java.io.FileWriter;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import org.json.simple.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+
 public class Demo2 {
-	    private static FileWriter file;
-
-	    @SuppressWarnings("unchecked")
-	    public static void main(String[] args) {
-	 String s="abcd";
-	        // JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
-	        JSONObject obj = new JSONObject();
-	        obj.put("Name", "Vijaya");
-	        obj.put("Author", "App Shah");
-	 
-	        JSONArray company = new JSONArray();
-	        company.add("Company: Facebook");
-	        company.add("Company: PayPal");
-	        company.add("Company: Google");
-	        obj.put("Company List", company);
-	        try {
-	 	            // Constructs a FileWriter given a file name, using the platform's default charset
-	            file = new FileWriter(".\\abc.json");
-	         //   file.write(obj.toJSONString());
-
-	 
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	 
-	        } finally {
-	 
-	            try {
-	                file.flush();
-	                file.close();
-	            } catch (IOException e) {
-	                // TODO Auto-generated catch block
-	                e.printStackTrace();
-	            }
-	        }
-	    }
-	 
-	    static public void CrunchifyLog(String str) {
-	        System.out.println("str");
-	    }
-	 
+	String str="{"results": [
+	             {
+	               "layerId": 5,
+	               "layerName": "Pharmaceutical Entities",
+	               "attributes": {
+	                 "OBJECTID": "35",
+	                 "FACILITYTYPE": "Pharmacy",
+	                 "FACILITYSUBTYPE": "24 Hr Pharmacy",
+	                 "COMMERCIALNAME_E": "SADD MAARAB PHARMACY"
+	                 },
+	               "geometryType": "esriGeometryPoint",
+	              },
+	             {
+	               "layerId": 5,
+	               "layerName": "Pharmaceutical Entities",
+	               "attributes": {
+	                 "OBJECTID": "1",
+	                 "FACILITYTYPE": "Pharmacy",
+	                 "FACILITYSUBTYPE": "24 Hr Pharmacy",
+	                 "COMMERCIALNAME_E": "GAYATHY HOSPITAL  PHARMACY"
+	               },
+	               "geometryType": "esriGeometryPoint",
+	             },
+	                {
+	               "layerId": 5,
+	               "layerName": "Pharmaceutical Entities",
+	               "attributes": {
+	                 "OBJECTID": "255",
+	                 "FACILITYTYPE": "Pharmacy",
+	                 "FACILITYSUBTYPE": "24 Hr Pharmacy",
+	                 "COMMERCIALNAME_E": "AL DEWAN PHARMACY"
+	                 },
+	               "geometryType": "esriGeometryPoint",
+	              }
+	           ]}";
+	
+	 public void sort(String data) throws IOException {
+		    JsonNode node = new ObjectMapper().readTree(data);
+		    ArrayNode array = (ArrayNode) node.get("results");
+		    Iterator<JsonNode> i =array.elements();
+		    List<JsonNode> list = new ArrayList<>();
+		    while(i.hasNext()){
+		        list.add(i.next());
+		    }
+		    list.sort(Comparator.comparing(o -> o.get("attributes").get("COMMERCIALNAME_E").asText()));
+		}
 	}
+

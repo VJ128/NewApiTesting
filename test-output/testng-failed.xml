@@ -5,13 +5,9 @@
     <classes>
       <class name="com.qa.api.testcases.POST">
         <methods>
-          <include name="dataValidation"/>
-          <include name="postRequest"/>
           <include name="tearDown"/>
+          <include name="postRequest"/>
           <include name="lengthOfParametersValidation"/>
-          <include name="idNotNull"/>
-          <include name="headerValidation"/>
-          <include name="respPayloadNotNull"/>
         </methods>
       </class> <!-- com.qa.api.testcases.POST -->
     </classes>
