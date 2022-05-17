@@ -3,11 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.api.testcases.POST_User_Scenario15_Invalid_Headers">
+      <class name="com.qa.api.testcases.POST">
         <methods>
-          <include name="postWithValidData"/>
+          <include name="dataValidation"/>
+          <include name="postRequest"/>
+          <include name="tearDown"/>
+          <include name="lengthOfParametersValidation"/>
+          <include name="idNotNull"/>
+          <include name="headerValidation"/>
+          <include name="respPayloadNotNull"/>
         </methods>
-      </class> <!-- com.qa.api.testcases.POST_User_Scenario15_Invalid_Headers -->
+      </class> <!-- com.qa.api.testcases.POST -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

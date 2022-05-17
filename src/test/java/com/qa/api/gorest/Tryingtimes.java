@@ -52,23 +52,25 @@ public class Tryingtimes {
 		postReq.setEntity(new UrlEncodedFormEntity(urlParameters));
 		CloseableHttpResponse response = client.execute(postReq);
 		return response;
-		HttpClient httpClient=HttpClientBuilder.create().setMaxConnPerRoute(1).build();
-	//	HttpClient httpClient = HttpClientBuilder.create().setMaxConnPerRoute(5).build();
-		ExecutorService executorService = Executors.newFixedThreadPool(1);
-		FutureRequestExecutionService futureRequestExecutionService =
-		    new FutureRequestExecutionService(client, executorService);
-		
-		HttpRequestFutureTask<Boolean> task = futureRequestExecutionService.execute(
-			    new HttpGet("http://www.google.com"),HttpClientContext.create(),
-			    new OkidokiHandler());
-			// blocks until the request complete and then returns true if you can connect to Google
-			boolean ok=task.get();
-			task.scheduledTime(); // returns the timestamp the task was scheduled
-			task.startedTime(); // returns the timestamp when the task was started
-			task.endedTime(); // returns the timestamp when the task was done executing
-			task.requestDuration(); // returns the duration of the http request
-			task.taskDuration(); // returns the duration of the task from the moment it was scheduled
-			/*
+		/*
+		 * HttpClient
+		 * httpClient=HttpClientBuilder.create().setMaxConnPerRoute(1).build(); //
+		 * HttpClient httpClient =
+		 * HttpClientBuilder.create().setMaxConnPerRoute(5).build(); ExecutorService
+		 * executorService = Executors.newFixedThreadPool(1);
+		 * FutureRequestExecutionService futureRequestExecutionService = new
+		 * FutureRequestExecutionService(client, executorService);
+		 * 
+		 * HttpRequestFutureTask<Boolean> task = futureRequestExecutionService.execute(
+		 * new HttpGet("http://www.google.com"),HttpClientContext.create(), new
+		 * OkidokiHandler()); // blocks until the request complete and then returns true
+		 * if you can connect to Google boolean ok=task.get(); task.scheduledTime(); //
+		 * returns the timestamp the task was scheduled task.startedTime(); // returns
+		 * the timestamp when the task was started task.endedTime(); // returns the
+		 * timestamp when the task was done executing task.requestDuration(); // returns
+		 * the duration of the http request task.taskDuration(); // returns the duration
+		 * of the task from the moment it was scheduled
+		 *//*
 			 * FutureRequestExecutionMetrics metrics =
 			 * futureRequestExecutionService.metrics() metrics.getActiveConnectionCount() //
 			 * currently active connections metrics.getScheduledConnectionCount(); //
