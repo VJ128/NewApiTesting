@@ -183,7 +183,7 @@ public class POST {
 	 * }}
 	 */ 
 	// 10.sort Data By FirstName
-	@Test
+	@Test(enabled=false)
 	public static void sortDataByFirstName(String data) throws IOException {
 		JsonNode node = new ObjectMapper().readTree(data);
 		ArrayNode array = (ArrayNode) node.get("data");
@@ -195,6 +195,7 @@ public class POST {
 		list.sort(Comparator.comparing(o -> o.get("first_name").asText()));
 		System.out.println(list);
 	}
+
 
 	@AfterClass
 	public void tearDown() {

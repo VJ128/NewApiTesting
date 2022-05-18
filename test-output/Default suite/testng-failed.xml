@@ -3,13 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.api.testcases.POST">
+      <class name="com.qa.api.testcases.POST_User_Scenario8_DataDrivenTesting">
         <methods>
-          <include name="tearDown"/>
-          <include name="postRequest"/>
-          <include name="lengthOfParametersValidation"/>
+          <include name="dataDrivenTesting"/>
         </methods>
-      </class> <!-- com.qa.api.testcases.POST -->
+      </class> <!-- com.qa.api.testcases.POST_User_Scenario8_DataDrivenTesting -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
