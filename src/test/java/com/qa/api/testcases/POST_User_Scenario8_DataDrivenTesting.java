@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.pojos.PojoForPOST;
 import com.qa.restapiclient.RestApiClient;
-import com.qa.utilities.ReadExcelDemo;
+import com.qa.utilities.ReadExcelDataPoi;
 import com.qa.utilities.ReadFromExcelPoi;
 public class POST_User_Scenario8_DataDrivenTesting {
 	RestApiClient restApiClient;
@@ -27,15 +27,14 @@ public class POST_User_Scenario8_DataDrivenTesting {
 
 	@DataProvider(name="DP1")
 	public Object[][] dataProvider() throws Exception{
-	ReadExcelDemo readExcelDemo=new ReadExcelDemo();
-		Object[][] testObjArray = ReadExcelDemo
+	ReadExcelDataPoi readExcelDemo=new ReadExcelDataPoi();
+		Object[][] testObjArray = ReadExcelDataPoi
 				.getTableArray(System.getProperty("user.dir") + "\\src\\test\\resources\\Book1.xlsx", "Sheet1");
 		return (testObjArray);
 	}
 	
 	@Test(dataProvider = "DP1")
 	public void dataDrivenTesting(String name,String email,String gender,String status) throws IOException {
-		System.out.println(name+" "+email+" "+gender+" "+status );
 		restApiClient = new RestApiClient();
 		Map<String, String> headerMap = new HashMap();
 		headerMap.put("Content-Type", "application/json");
@@ -54,11 +53,10 @@ public class POST_User_Scenario8_DataDrivenTesting {
 		ObjectMapper objectMapper=new ObjectMapper();
 		javaResp = objectMapper.readValue(stringJsonResponse, PojoForPOST.class);
 		
-		/*
-		 * Assert.assertEquals(javaResp.getName(),name);
-		 * Assert.assertEquals(javaResp.getEmail(),email);
-		 * Assert.assertEquals(javaResp.getGender(),gender);
-		 * Assert.assertEquals(javaResp.getStatus(),status);
-		 */
+		  Assert.assertEquals(javaResp.getName(),name);
+		  Assert.assertEquals(javaResp.getEmail(),email);
+		  Assert.assertEquals(javaResp.getGender(),gender);
+		  Assert.assertEquals(javaResp.getStatus(),status);
+		 
 	}
 }
