@@ -3,8 +3,8 @@ package com.qa.api.testcases;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -15,8 +15,9 @@ import org.apache.http.util.EntityUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class POST_User_Scenario2_BlankValues {
+public class POST_User_Scenario20_NullData {
 	String baseUrl = "https://gorest.co.in/public/v2/users";
+	// String baseUrl="https://reqres.in/api/users/2");
 	String bearer = "Bearer 5c704e9580b42878fedd75089099a464072a73f93bb763666279b587b86c995b";
 
 	public CloseableHttpResponse postRequest(String url) throws IOException {
@@ -24,12 +25,12 @@ public class POST_User_Scenario2_BlankValues {
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpPost postReq = new HttpPost(url);
 		postReq.addHeader("Authorization", bearer);
+		// postReq.addHeader("Content-Type", "application/json");
 		List<NameValuePair> urlParameters = new ArrayList<>();
-		// try giving blank values for different combinations of params
-		String emailId = "";
-		String name = "";
-		String gender = "";
-		String status = "";
+		String emailId = null;
+		String name = null;
+		String gender = null;
+		String status = null;
 		urlParameters.add(new BasicNameValuePair("name", name));
 		urlParameters.add(new BasicNameValuePair("email", emailId));
 		urlParameters.add(new BasicNameValuePair("gender", gender));
@@ -44,12 +45,10 @@ public class POST_User_Scenario2_BlankValues {
 		return respString;
 	}
 
-	@Test // post with valid data
-	public void postWithBlankValues() {
+	@Test 
+	public void postWithNullData() {
 		try {
 			HttpResponse response = postRequest(baseUrl);
-			// Assert.assertEquals(response.getStatusLine().getProtocolVersion(),
-			// "HTTP/1.1");//
 			Assert.assertEquals(response.getStatusLine().getStatusCode(), 422);//
 			Assert.assertEquals(response.getStatusLine().getReasonPhrase(), "Unprocessable Entity");//
 			Assert.assertEquals(response.getStatusLine().toString(), "HTTP/1.1 422 Unprocessable Entity");

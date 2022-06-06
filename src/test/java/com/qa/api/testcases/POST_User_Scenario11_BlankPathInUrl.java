@@ -19,8 +19,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class POST_User_Scenario11_BlankPathInUrl {
-	String baseUrl = "https://gorest.co.in/public/v2/users/%&^^%$";
-	// String baseUrl="https://reqres.in/api/users/2");
 	String bearer = "Bearer 5c704e9580b42878fedd75089099a464072a73f93bb763666279b587b86c995b";
 	URI uri;
 
@@ -50,16 +48,14 @@ public class POST_User_Scenario11_BlankPathInUrl {
 		return respString;
 	}
 
-	@Test // post with valid data
-	public void postWithValidData() throws Exception {
+	@Test 
+	public void postWithBlankPathParam() throws Exception {
 		try {
-			uri = new URIBuilder()
-					.setScheme("https")
-					.setHost("gorest.co.in/public/v2/")
-					.setPath("/users").setPath(" ")
+			uri = new URIBuilder().setScheme("https").setHost("gorest.co.in/public/v2/").setPath("/users").setPath(" ")
 					.build();
 			HttpResponse response = postRequest(uri);
 			Assert.assertEquals(response.getStatusLine().getStatusCode(), 404);//
+			System.out.println(response.getStatusLine().getStatusCode());
 			Assert.assertEquals(response.getStatusLine().getReasonPhrase(), "Not Found");//
 			Assert.assertEquals(response.getStatusLine().toString(), "HTTP/1.1 404 Not Found");
 			String respStrng = getRespString(response);
@@ -69,4 +65,6 @@ public class POST_User_Scenario11_BlankPathInUrl {
 			e.printStackTrace();
 		}
 	}
+
+	
 }

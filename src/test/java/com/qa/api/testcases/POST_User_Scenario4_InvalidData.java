@@ -27,7 +27,7 @@ public class POST_User_Scenario4_InvalidData {
 		postReq.addHeader("Authorization", bearer);
 		// postReq.addHeader("Content-Type", "application/json");
 		List<NameValuePair> urlParameters = new ArrayList<>();
-		String emailId = "-12345/0@gmail.com";
+		String emailId = "-12345/0gmail.com";
 		String name = "#$%^&*UIJH";
 		String gender = "*&YGVHBN";
 		String status = ")(*&^%TGH";
@@ -46,7 +46,7 @@ public class POST_User_Scenario4_InvalidData {
 	}
 
 	@Test // post with valid data
-	public void postWithValidData() {
+	public void postWithInValidData() {
 		try {
 			HttpResponse response = postRequest(baseUrl);
 			// Assert.assertEquals(response.getStatusLine().getProtocolVersion(),
@@ -56,7 +56,7 @@ public class POST_User_Scenario4_InvalidData {
 			Assert.assertEquals(response.getStatusLine().toString(), "HTTP/1.1 422 Unprocessable Entity");
 			String respStrng = getRespString(response);
 			System.out.println("respString " + respStrng);
-			// Assert.assertTrue(respStrng.contains("is invalid"));
+			Assert.assertTrue(respStrng.contains("is invalid"));
 //gender and status messages are incorrect, there is no mesg for invalid characters in 'name'
 		} catch (IOException e) {
 			e.printStackTrace();

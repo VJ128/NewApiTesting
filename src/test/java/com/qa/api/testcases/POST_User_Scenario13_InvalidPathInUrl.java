@@ -29,7 +29,7 @@ public class POST_User_Scenario13_InvalidPathInUrl {
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpPost postReq = new HttpPost(uri2);
 		postReq.addHeader("Authorization", bearer);
-		// postReq.addHeader("Content-Type", "application/json");
+		postReq.addHeader("Content-Type", "application/json");
 		List<NameValuePair> urlParameters = new ArrayList<>();
 		String emailId = "api" + Math.random() + "@gmail.com";
 		String name = "API_Test";
@@ -49,15 +49,11 @@ public class POST_User_Scenario13_InvalidPathInUrl {
 		return respString;
 	}
 
-	@Test // post with valid data
-	public void postWithValidData() throws Exception {
+	@Test
+	public void postWithInValidUrl400() throws Exception {
 		try {
-			uri = new URIBuilder()
-					.setScheme("https")
-					.setHost("gorest.co.in/public/v2/")
-					.setPath("/users")
-					.setPath("?$%)(*&^%$#!@#$%^?><<~!@#$+_)(*&^%")
-					.build();
+			uri = new URIBuilder().setScheme("https").setHost("gorest.co.in/public/v2/").setPath("/users")
+					.setPath("?$%)(*&^%$#!@#$%^?><<~!@#$+_)(*&^%").build();
 			HttpResponse response = postRequest(uri);
 			System.out.println(response.getStatusLine().getStatusCode());
 			Assert.assertEquals(response.getStatusLine().getStatusCode(), 400);//
@@ -69,4 +65,47 @@ public class POST_User_Scenario13_InvalidPathInUrl {
 			e.printStackTrace();
 		}
 	}
+
+	@Test
+	public void postWithInValidUrl2() throws Exception {
+		try {
+			uri = new URIBuilder().setScheme("https").setHost("gorest.co.in/public/v2/").setPath("/users")
+					.setPath("#$%ETGFDGEW$%#W$ER4refdge5ergfv!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!").build();
+			HttpResponse response = postRequest(uri);
+			System.out.println(response.getStatusLine().getStatusCode());
+			// Assert.assertEquals(response.getStatusLine().getStatusCode(), 400);//
+			// Assert.assertEquals(response.getStatusLine().getReasonPhrase(), "Bad
+			// Request");//
+			// Assert.assertEquals(response.getStatusLine().toString(), "HTTP/1.1 400 Bad
+			// Request");
+			String respStrng = getRespString(response);
+			System.out.println("respString " + respStrng);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// getting 404 in postman and 400 here
+	@Test
+	public void postWithInValidUrl3() throws Exception {
+		try {
+			uri = new URIBuilder()
+					.setScheme("https")
+					.setHost("gorest.co.in/public/v2/")
+					.setPath("/users/")
+					.setPath("324wsdvrt45tgredsfxvw45y").build();
+			HttpResponse response = postRequest(uri);
+			System.out.println(response.getStatusLine().getStatusCode());
+			// Assert.assertEquals(response.getStatusLine().getStatusCode(), 400);//
+			// Assert.assertEquals(response.getStatusLine().getReasonPhrase(), "Bad
+			// Request");//
+			// Assert.assertEquals(response.getStatusLine().toString(), "HTTP/1.1 400 Bad
+			// Request");
+			String respStrng = getRespString(response);
+			System.out.println("respString " + respStrng);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

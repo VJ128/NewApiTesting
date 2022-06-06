@@ -13,8 +13,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
-import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,7 @@ import org.apache.http.util.EntityUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class POST_User_Scenario6_Validate_lengthOfFields {
+public class POST_User_Scenario19_InvalidEmailID {
 	String baseUrl = "https://gorest.co.in/public/v2/users";
 	// String baseUrl="https://reqres.in/api/users/2");
 	String bearer = "Bearer 5c704e9580b42878fedd75089099a464072a73f93bb763666279b587b86c995b";
@@ -35,8 +33,8 @@ public class POST_User_Scenario6_Validate_lengthOfFields {
 		postReq.addHeader("Authorization", bearer);
 		// postReq.addHeader("Content-Type", "application/json");
 		List<NameValuePair> urlParameters = new ArrayList<>();
-		String emailId = "api" + Math.random() + "@gmail.com";
-		String name = "Test_123ekdsjofdsfoidf93ufjkendilurj3ioewkjffdddddddddddddddddddeeeeeqadcscdscfdgert4r443333333333333333333333333333333333fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff44444444444444444444444dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa444444444444444444444444444444444444444444444444444444444444444443333333333333333333333366666666666666666666666666666666666gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggbbbbbbbbbbbbbbbbbbbbbbbbbbafffffffffffffffffffiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiitttttttttttttttttttttttttttttttttttttttttttttttteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesssssssssssssssssssssssssssssssssttttttttttttttttttttttttttt";
+		String emailId = "%^&*IUGHJB";
+		String name = "API_Test";
 		String gender = "male";
 		String status = "active";
 		urlParameters.add(new BasicNameValuePair("name", name));
@@ -49,32 +47,22 @@ public class POST_User_Scenario6_Validate_lengthOfFields {
 	}
 
 	public String getRespString(HttpResponse response) throws IOException {
-		HttpEntity entity = response.getEntity();
 		String respString = EntityUtils.toString(response.getEntity());
-		// System.out.println(EntityUtils.toByteArray(entity).length);
 		return respString;
 	}
 
-//tc to find if field accepts more than the range of length as per requirement
-	@Test
-	public void validateMaxLengthOfNameField() {
+	@Test // post with valid data
+	public void postWithInvalidEmailID() {
 		try {
 			HttpResponse response = postRequest(baseUrl);
+			// Assert.assertEquals(response.getStatusLine().getProtocolVersion(),
+			// "HTTP/1.1");//
+			Assert.assertEquals(response.getStatusLine().getStatusCode(), 422);//
+			Assert.assertEquals(response.getStatusLine().getReasonPhrase(), "Unprocessable Entity");//
+			Assert.assertEquals(response.getStatusLine().toString(), "HTTP/1.1 422 Unprocessable Entity");
 			String respStrng = getRespString(response);
 			System.out.println("respString " + respStrng);
-			Assert.assertTrue(respStrng
-					.contentEquals("[{\"field\":\"name\",\"message\":\"is too long (maximum is 200 characters)\"}]"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	// incomplete
-	@Test(enabled = false)
-	public void validateLengthOfFields() {
-		try {
-			HttpResponse response = postRequest(baseUrl);
-			String respStrng = getRespString(response);
-			System.out.println("respString " + respStrng);
+			Assert.assertTrue(respStrng.contentEquals("[{\"field\":\"email\",\"message\":\"is invalid\"}]"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
